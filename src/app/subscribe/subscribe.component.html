@@ -1,23 +1,36 @@
-<form>
-    <!-- class add  is-invalid/is-valid -->
+<div class="container-lg mt-5">
+  <form #form_subscribe="ngForm" (ngSubmit)="onSubmit(form_subscribe)">
 
     <div class="mb-3">
       <label for="fullName" class="form-label">Nome Completo</label>
-      <input type="password" class="form-control" id="fullName">
+      <input type="text" class="form-control" name="fullname" id="fullname" 
+      [ngModel]="subscriber.fullname" required #fullname="ngModel"
+      [class.is-invalid]="!fullname.valid && fullname.touched">
+
     </div>
+
     <div class="mb-3">
       <label for="email" class="form-label">E-mail</label>
-      <input type="email" class="form-control" id="email">
-      <!-- <div id="emailAlert" class="form-text"></div> -->
+      <input type="email" class="form-control" id="email" name="email" id="email"
+      [ngModel]="subscriber.email" required email #email="ngModel"
+      [class.is-invalid]="!email.valid && email.touched">   
     </div>
+
     <div class="mb-3">
         <label for="photoFile" class="form-label">Anexe uma foto</label>
-        <input class="form-control" type="file" id="photoFile">
+        <input class="form-control" type="file" id="photoFile" name="photoFile" id="photoFile"
+        [ngModel]="subscriber.photoFile" required #photoFile="ngModel"
+        [class.is-invalid]="!photoFile.valid && photoFile.touched">
+        
         <div id="warningPhoto" class="form-text">Tamanho máximo 5mb</div>
     </div>
+
     <div class="mb-3">
         <label for="videoFile" class="form-label">Anexe um vídeo</label>
-        <input class="form-control" type="file" id="videoFile">
+        <input class="form-control" type="file" id="videoFile" name="videoFile" id="videoFile"
+        [ngModel]="subscriber.videoFile" required #videoFile="ngModel"
+        [class.is-invalid]="!videoFile.valid && videoFile.touched">
+        
         <div id="warningVideo" class="form-text">Tamanho máximo 5mb</div>
     </div>
     <div class="mb-3 form-check">
@@ -25,6 +38,9 @@
       <label class="form-check-label" for="RegisterCheck">Lembrar-me</label>
     </div>
     <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary ">Confirmar</button>
+        <button type="submit" class="btn btn-primary"
+        [disabled]="!form_subscribe.valid" >Confirmar</button>
     </div>
   </form>
+</div>
+
