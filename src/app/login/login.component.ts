@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { IUser } from '../interfaces/iuser';
+import { UsuarioService } from '../services/usuario.service';
+
 
 @Component({
   selector: 'app-login',
@@ -6,16 +10,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user: any = {
-    name: "",
+
+  contactForm: FormGroup;
+  disabledSubmitButton: boolean = true;
+  
+  user: IUser = {
+    username: "",
     password: ""
   }
 
-  onSubmit(form: any){
-    console.log(form.value)
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
+    this.contactForm = this.fb.group({
+      'username': ['', Validators.required],
+      'password': ['', Validators.required],
+
+    });
   }
 
-  constructor() { }
+  @HostListener('input') oninput() {
+    if (this.contactForm.valid) {
+      this.disabledSubmitButton = false;
+    }
+  }
+
+  onSubmit(){
+    // this.user =  this.contactForm.value;
+    this.usuarioService.logar(this.contactForm.value).subscribe(()=>{
+      alert('logado');
+      this.disabledSubmitButton = true;
+    }, error =>{
+      console.log('Error', error);
+    });
+  }
+
 
   ngOnInit(): void {
   }

@@ -6,14 +6,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn">
           <a class="nav-link" routerLink="/list-subscribed">Lista de inscrições</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/subscribe">Inscrever-se</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="!isLoggedIn">
           <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/register">Registre-se</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="">Logout</a>
         </li>
       </ul>
     </div>

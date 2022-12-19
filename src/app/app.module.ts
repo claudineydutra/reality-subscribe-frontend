@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 
@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { ListSubscribedComponent } from './list-subscribed/list-subscribed.component';
+import { RegisterComponent } from './register/register.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,18 @@ import { ListSubscribedComponent } from './list-subscribed/list-subscribed.compo
     HomeComponent,
     LoginComponent,
     SubscribeComponent,
-    ListSubscribedComponent
+    ListSubscribedComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     routing
   ],
-  providers: [],
+  providers: [
+    FormBuilder
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
