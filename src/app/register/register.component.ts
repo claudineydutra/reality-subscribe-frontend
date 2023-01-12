@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from "@angular/forms";
+import { Router } from '@angular/router';
+import { IResponseAuth } from '../interfaces/iresponse-auth';
 import { IUser } from '../interfaces/iuser';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
   selector: 'app-register',
@@ -9,16 +12,21 @@ import { IUser } from '../interfaces/iuser';
 })
 export class RegisterComponent implements OnInit {
 
+  router: Router;
   user: IUser = {
-    username: "",
-    password: ""
+    email: "",
+    senha: ""
+  }
+  responseAuth: IResponseAuth = {}
+
+  constructor( private usuarioService: UsuarioService, router: Router) {
+    this.router = router;
   }
 
   onSubmit(form: any){
-    console.log(form.value)
+    this.responseAuth = this.usuarioService.register(form.value);
   }
 
-  constructor() { }
 
   ngOnInit(): void {
   }

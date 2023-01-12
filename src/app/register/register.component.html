@@ -3,8 +3,8 @@
       
       <div class="mb-3">
         <label for="loginUser" class="form-label">Usuário</label>
-        <input type="user" class="form-control" name="username"  
-        id="loginUser" [ngModel]="user.username" required #name="ngModel"
+        <input type="user" class="form-control" name="email"  
+        id="loginUser" [ngModel]="user.email" required #name="ngModel"
         [class.is-invalid] = "!name.valid && name.touched">
         
         <!-- <div [class.invalid-tooltip] = "!name.valid && !name.touched"
@@ -15,8 +15,8 @@
   
       <div class="mb-3">
         <label for="loginPassword" class="form-label">Senha</label>
-        <input type="password" class="form-control" name="password" 
-        id="loginPassword" [ngModel]="user.password" required #password="ngModel"
+        <input type="password" class="form-control" name="senha" 
+        id="loginPassword" [ngModel]="user.senha" required #password="ngModel"
         [class.is-invalid] = "!password.valid && password.touched">
         
         <!-- <div [class.invalid-tooltip] = "!password.valid && !password.touched"

@@ -1,3 +1,4 @@
+<!-- <app-nav-bar></app-nav-bar> -->
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="">REALITY</a>
@@ -15,8 +16,8 @@
         <li class="nav-item" routerLinkActive="active" *ngIf="!isLoggedIn">
           <a class="nav-link" routerLink="/register">Registre-se</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn">
-          <a class="nav-link" routerLink="">Logout</a>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink=""(click)="deslogar()">Logout</a>
         </li>
       </ul>
     </div>

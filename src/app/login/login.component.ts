@@ -1,49 +1,33 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import * as core from '@angular/core';
 import { IUser } from '../interfaces/iuser';
+import { IResponseAuth } from '../interfaces/iresponse-auth';
 import { UsuarioService } from '../services/usuario.service';
+import { Router } from '@angular/router';
 
-
-@Component({
+@core.Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements core.OnInit {
 
-  contactForm: FormGroup;
-  disabledSubmitButton: boolean = true;
-  
+  router: Router;
   user: IUser = {
-    username: "",
-    password: ""
+    email: "",
+    senha: ""
+  }
+  responseAuth: IResponseAuth = {}
+
+  constructor( private usuarioService: UsuarioService, router: Router) {
+    this.router = router;
   }
 
-  constructor(private fb: FormBuilder, private usuarioService: UsuarioService) {
-    this.contactForm = this.fb.group({
-      'username': ['', Validators.required],
-      'password': ['', Validators.required],
-
-    });
+  
+  onSubmit(form: any){
+    this.responseAuth = this.usuarioService.logar(form.value);
   }
 
-  @HostListener('input') oninput() {
-    if (this.contactForm.valid) {
-      this.disabledSubmitButton = false;
-    }
-  }
-
-  onSubmit(){
-    // this.user =  this.contactForm.value;
-    this.usuarioService.logar(this.contactForm.value).subscribe(()=>{
-      alert('logado');
-      this.disabledSubmitButton = true;
-    }, error =>{
-      console.log('Error', error);
-    });
-  }
-
-
+  
   ngOnInit(): void {
   }
 

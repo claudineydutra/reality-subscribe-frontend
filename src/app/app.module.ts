@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { FormBuilder, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
-
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { HomeComponent } from './home/home.component';
@@ -10,7 +8,11 @@ import { LoginComponent } from './login/login.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { ListSubscribedComponent } from './list-subscribed/list-subscribed.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { UsuarioService } from './services/usuario.service';
+import { UsuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
+import { UsuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autenticado.guard';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     LoginComponent,
     SubscribeComponent,
     ListSubscribedComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     routing
   ],
   providers: [
-    FormBuilder
+    UsuarioService,
+    UsuarioAutenticadoGuard,
+    UsuarioNaoAutenticadoGuard
   ],
   bootstrap: [AppComponent]
 })
