@@ -7,14 +7,18 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class NavBarComponent implements OnInit {
 
+  isLoggedIn: boolean = false;
+
   constructor(private usuarioService: UsuarioService){}
 
-  public isLoggedIn = this.usuarioService.responseAuth.hasLogin;
   ngOnInit(): void {
+    this.usuarioService.navbar.subscribe(
+      isLogged => this.isLoggedIn = isLogged
+    );
   }
 
   deslogar(){
-    this.usuarioService.deslogar()
+    this.isLoggedIn = false;
     window.location.reload();
   }
 

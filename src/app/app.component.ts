@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from './services/usuario.service';
+import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,18 +6,10 @@ import { UsuarioService } from './services/usuario.service';
 })
 export class AppComponent implements OnInit {
 
-  isLoggedIn: boolean = false;
-
-  constructor(private usuarioService: UsuarioService){}
+  constructor(){}
 
   ngOnInit(): void {
-    this.usuarioService.navbar.subscribe(
-      isLogged => this.isLoggedIn = isLogged
-    );
+
   }
 
-  deslogar(){
-    this.isLoggedIn = false;
-    window.location.reload();
-  }
 }
