@@ -22,8 +22,9 @@ export class UsuarioService {
   public navbar = new EventEmitter<boolean>();
 
   logar(user: IUser) : IResponseAuth{
+    const userJson = JSON.stringify(user);
     this.request = this.httpClient.post(this.url + '/Login',
-    JSON.stringify(user), { headers: new HttpHeaders(this.header), responseType: 'text' });
+    userJson, { headers: new HttpHeaders(this.header), responseType: 'text' });
 
     this.request.subscribe((response) => {
       this.responseAuth = JSON.parse(response) as IResponseAuth

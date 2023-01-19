@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Subscribe } from '../interfaces/subscribe';
 
 @Injectable({
@@ -16,13 +17,17 @@ export class SubscribeService {
 
 
 
-  getAll(): Subscribe[]{
-    let lista: any;
-    this.httpClient.get(this.url + '/Getall', { headers: new HttpHeaders(this.header), responseType: 'text' })
-    .subscribe((response)=>{
-        lista = JSON.parse(response) as Subscribe[];
-      });
-      return lista;
+  getAll(): Observable<Subscribe[]>{
+    return this.httpClient.get<Subscribe[]>(this.url + '/Getall')
+  }
+
+  confirm(list: string[]){
+    const body = { ids: list };
+    const jsonBody = JSON.stringify(body);
+    this.httpClient.put(this.url + '/Confirm', jsonBody, { headers: new HttpHeaders(this.header), responseType: 'text' })
+    .subscribe({error: error => {
+      console.error('There was an error!', error);
+    }});
   }
 
 }
