@@ -37,7 +37,7 @@ export class ListSubscribedComponent implements OnInit {
       }
     });
     this.service.confirm(listIds);
-    this.ngOnInit();
+    window.location.reload();
   }
 
 } 

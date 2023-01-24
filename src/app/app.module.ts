@@ -13,6 +13,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { UsuarioService } from './services/usuario.service';
 import { UsuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
 import { UsuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autenticado.guard';
+import { SubscribeService } from './services/subscribe.service';
+import { UploadService } from './services/upload.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { UsuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autent
     routing
   ],
   providers: [
+    UploadService,
+    SubscribeService,
     UsuarioService,
     UsuarioAutenticadoGuard,
     UsuarioNaoAutenticadoGuard

@@ -13,12 +13,12 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioService.navbar.subscribe(
-      isLogged => this.isLoggedIn = isLogged
+      this.isLoggedIn = this.usuarioService.logado()!
     );
   }
 
   deslogar(){
-    this.isLoggedIn = false;
+    this.usuarioService.deslogar();
     window.location.reload();
   }
 

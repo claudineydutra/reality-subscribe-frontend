@@ -11,7 +11,7 @@ const APP_ROUTES: Routes = [
     { path: '', component: HomeComponent},
     { path: 'login', component: LoginComponent, canActivate: [UsuarioNaoAutenticadoGuard]},
     { path: 'register', component: RegisterComponent, canActivate: [UsuarioNaoAutenticadoGuard]},
-    { path: 'subscribe', component: SubscribeComponent, canActivate: [UsuarioAutenticadoGuard]},
+    { path: 'subscribe', component: SubscribeComponent},
     { path: 'list-subscribed', component: ListSubscribedComponent, canActivate: [UsuarioAutenticadoGuard]}
 ];
 

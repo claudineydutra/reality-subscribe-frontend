@@ -17,7 +17,7 @@ export class UsuarioService {
 
   private request!: Observable<any>;
 
-  responseAuth: IResponseAuth = {};
+  static responseAuth: IResponseAuth = {};
 
   public navbar = new EventEmitter<boolean>();
 
@@ -27,18 +27,20 @@ export class UsuarioService {
     userJson, { headers: new HttpHeaders(this.header), responseType: 'text' });
 
     this.request.subscribe((response) => {
-      this.responseAuth = JSON.parse(response) as IResponseAuth
-      if(this.responseAuth.hasLogin){
+      UsuarioService.responseAuth = JSON.parse(response) as IResponseAuth
+      if(UsuarioService.responseAuth.hasLogin){
+        this.saveStorage(UsuarioService.responseAuth);        
         this.navbar.emit(true);
+        window.location.reload();
         this.router.navigate(['/list-subscribed']);
       }else{
-        alert(this.responseAuth.message)
+        alert(UsuarioService.responseAuth.message)
       }
     }, error =>{
       console.log('Error' + error);
     })
 
-    return this.responseAuth;
+    return UsuarioService.responseAuth;
   }
 
   register(user: IUser) {
@@ -46,27 +48,36 @@ export class UsuarioService {
     JSON.stringify(user), { headers: new HttpHeaders(this.header), responseType: 'text' });
 
     this.request.subscribe((response) => {
-      this.responseAuth = JSON.parse(response) as IResponseAuth
-      if(this.responseAuth.hasLogin){
+      UsuarioService.responseAuth = JSON.parse(response) as IResponseAuth
+      if(UsuarioService.responseAuth.hasLogin){
+        this.saveStorage(UsuarioService.responseAuth);
         this.navbar.emit(true);
+        window.location.reload();
         this.router.navigate(['/list-subscribed']);
       }else{
-        alert(this.responseAuth.message)
+        alert(UsuarioService.responseAuth.message)
       }
     }, error =>{
       console.log('Error' + error);
     })
 
-    return this.responseAuth;
+    return UsuarioService.responseAuth;
   }
   
   deslogar() {
-    this.responseAuth.hasLogin = false;
-    this.router.navigate(['login']);
+    localStorage.clear();
   }
 
   logado(){
-    return this.responseAuth.hasLogin;
+    const loginJson = localStorage.getItem('login');
+    UsuarioService.responseAuth = loginJson != null ? JSON.parse(loginJson) : undefined;
+    if(UsuarioService.responseAuth == undefined){ return false}
+    return UsuarioService.responseAuth.hasLogin;
   }
+
+  saveStorage(object: any){
+    localStorage.setItem('login', JSON.stringify(object));
+  }
+  
 
 }
