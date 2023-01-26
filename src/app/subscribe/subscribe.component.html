@@ -2,10 +2,10 @@
   <form #form_subscribe="ngForm" (ngSubmit)="onSubmit(form_subscribe)">
 
     <div class="mb-3">
-      <label for="fullName" class="form-label">Nome Completo</label>
-      <input type="text" class="form-control" name="fullname" id="fullname" 
-      [ngModel]="subscriber.fullname" required #fullname="ngModel"
-      [class.is-invalid]="!fullname.valid && fullname.touched">
+      <label for="nome" class="form-label">Nome Completo</label>
+      <input type="text" class="form-control" name="nome" id="nome" 
+      [ngModel]="subscriber.nome" required #nome="ngModel"
+      [class.is-invalid]="!nome.valid && nome.touched">
 
     </div>
 
@@ -18,25 +18,18 @@
 
     <div class="mb-3">
         <label for="photoFile" class="form-label">Anexe uma foto</label>
-        <input class="form-control" type="file" id="photoFile" name="photoFile" id="photoFile"
-        [ngModel]="subscriber.photoFile" required #photoFile="ngModel"
-        [class.is-invalid]="!photoFile.valid && photoFile.touched">
+        <input class="form-control" #foto type="file" (change)="onFileChange($event)" accept="image/*" required >
         
         <div id="warningPhoto" class="form-text">Tamanho máximo 5mb</div>
     </div>
 
     <div class="mb-3">
         <label for="videoFile" class="form-label">Anexe um vídeo</label>
-        <input class="form-control" type="file" id="videoFile" name="videoFile" id="videoFile"
-        [ngModel]="subscriber.videoFile" required #videoFile="ngModel"
-        [class.is-invalid]="!videoFile.valid && videoFile.touched">
-        
+        <input class="form-control" #video type="file" (change)="onFileChange($event)" accept="video/*" required >
+
         <div id="warningVideo" class="form-text">Tamanho máximo 5mb</div>
     </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="RegisterCheck">
-      <label class="form-check-label" for="RegisterCheck">Lembrar-me</label>
-    </div>
+
     <div class="d-grid gap-2">
         <button type="submit" class="btn btn-primary"
         [disabled]="!form_subscribe.valid" >Confirmar</button>

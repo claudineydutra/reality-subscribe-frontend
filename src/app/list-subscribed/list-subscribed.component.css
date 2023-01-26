@@ -1,7 +1,14 @@
-#criarSubscribe{
-    position: absolute;
-    top: 10%;
-    left: 80%;
-    width: 8%;
-    transform: translate(-50%, -50%);
+.image{
+    width: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr{
+    text-align: center;
+}
+
+th{
+    text-align: center;
 }

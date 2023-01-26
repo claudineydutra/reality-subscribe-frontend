@@ -14,7 +14,6 @@ import { UsuarioService } from './services/usuario.service';
 import { UsuarioAutenticadoGuard } from './services/guards/usuario-autenticado.guard';
 import { UsuarioNaoAutenticadoGuard } from './services/guards/usuario-nao-autenticado.guard';
 import { SubscribeService } from './services/subscribe.service';
-import { UploadService } from './services/upload.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { UploadService } from './services/upload.service';
     routing
   ],
   providers: [
-    UploadService,
     SubscribeService,
     UsuarioService,
     UsuarioAutenticadoGuard,

@@ -13,13 +13,13 @@ export class ListSubscribedComponent implements OnInit {
   constructor(private service: SubscribeService, private router: Router) {
   }
 
-  public list: Subscribe[] = [];
+  public list: any[] = [];
 
   ngOnInit(): void {
     this.getData();
   }
   getData() {
-    this.service.getAll().subscribe((subs: Subscribe[])=>{
+    this.service.getAll().subscribe((subs: any[])=>{
       let x: any = subs;
       this.list = x.inscricaoResult;
       console.log(this.list);
@@ -27,7 +27,7 @@ export class ListSubscribedComponent implements OnInit {
     });
   }
   
-  confirmSubscribe(){ 
+  async confirmSubscribe(){ 
     console.log(this.list)
     let listIds: string[] = [];
     this.list.forEach(item => {
@@ -36,7 +36,8 @@ export class ListSubscribedComponent implements OnInit {
         listIds.push(item.id);
       }
     });
-    this.service.confirm(listIds);
+    await this.service.confirm(listIds);
+    alert('Inscrições confirmadas !!!')
     window.location.reload();
   }
 

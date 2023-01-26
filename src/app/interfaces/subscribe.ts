@@ -2,9 +2,7 @@ export interface Subscribe {
     id: string
     nome: string
     email: string
-    dataNascimento: string
-    createdDate: string
-    modifieddDate: string
+    filesIds: Array<any>
     stage?: boolean
     checked: boolean
 }

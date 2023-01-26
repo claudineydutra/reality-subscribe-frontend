@@ -8,6 +8,7 @@
       <th>#</th>
       <th scope="col">Nome</th>
       <th scope="col">Email</th>
+      <th class="image">Perfil</th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -16,6 +17,9 @@
       <td *ngIf="!item.stage && !item.checked">{{i+1}}</td>
       <td *ngIf="!item.stage && !item.checked">{{item.nome}}</td>
       <td *ngIf="!item.stage && !item.checked">{{item.email}}</td>
+        <td *ngIf="!item.stage && !item.checked">
+          <img class="image" src="{{'data:'+ item.files[0].file.type + ';base64,' + item.files[0].file.attachment}}">
+        </td>
     </tr>
   </tbody>
 </table>
@@ -32,6 +36,7 @@
       <th scope="col">#</th>
       <th scope="col">Nome</th>
       <th scope="col">Email</th>
+      <th class="image">Perfil</th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -40,6 +45,9 @@
       <td *ngIf="item.stage != undefined && item.stage">{{i+1}}</td>
       <td *ngIf="item.stage != undefined && item.stage">{{item.nome}}</td>
       <td *ngIf="item.stage != undefined && item.stage">{{item.email}}</td>
+      <td *ngIf="item.stage != undefined && item.stage">
+        <img class="image" src="{{'data:'+ item.files[0].file.type + ';base64,' + item.files[0].file.attachment}}">
+      </td>
     </tr>
   </tbody>
 </table>
@@ -58,6 +66,7 @@
       <th scope="col">#</th>
       <th scope="col">Nome</th>
       <th scope="col">Email</th>
+      <th class="image">Perfil</th>
     </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -65,6 +74,9 @@
       <td *ngIf="item.checked && !item.stage">{{i+1}}</td>
       <td *ngIf="item.checked && !item.stage">{{item.nome}}</td>
       <td *ngIf="item.checked && !item.stage">{{item.email}}</td>
+      <td *ngIf="item.checked && !item.stage">
+        <img class="image" src="{{'data:'+ item.files[0].file.type + ';base64,' + item.files[0].file.attachment}}">
+      </td>
     </tr>
   </tbody>
 </table>
