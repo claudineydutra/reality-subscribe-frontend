@@ -1,0 +1,82 @@
+<header class="text-center mt-3">
+  <h1 class="display-6">INSCRIÇÕES</h1>
+</header>
+<table class="table container-xl" style="margin-bottom: 75px;">
+  <thead>
+    <tr>
+      <th></th>
+      <th>#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th class="image">Perfil</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let item of list; let i=index;">
+      <td *ngIf="!item.stage && !item.checked"><input type="checkbox" value="{{item.id}}" [(ngModel)]="item.stage"></td>
+      <td *ngIf="!item.stage && !item.checked">{{i+1}}</td>
+      <td *ngIf="!item.stage && !item.checked">{{item.nome}}</td>
+      <td *ngIf="!item.stage && !item.checked">{{item.email}}</td>
+        <td *ngIf="!item.stage && !item.checked">
+          <img class="image" src="{{'data:'+ item.files[0].file.type + ';base64,' + item.files[0].file.attachment}}">
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<header class="text-center">
+  <h1 class="display-6">INSCRIÇÕES ESCOLHIDAS</h1>
+</header>
+
+<table class="table container-xl">
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th class="image">Perfil</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let item of list; index as i">
+      <td *ngIf="item.stage != undefined && item.stage"><input type="checkbox" value="{{item.id}}" [(ngModel)]="item.stage"></td>
+      <td *ngIf="item.stage != undefined && item.stage">{{i+1}}</td>
+      <td *ngIf="item.stage != undefined && item.stage">{{item.nome}}</td>
+      <td *ngIf="item.stage != undefined && item.stage">{{item.email}}</td>
+      <td *ngIf="item.stage != undefined && item.stage">
+        <img class="image" src="{{'data:'+ item.files[0].file.type + ';base64,' + item.files[0].file.attachment}}">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<footer class="text-center" style="margin-bottom: 75px; margin-top: 50px;">
+  <button class="btn btn-primary" (click)="confirmSubscribe()">Confirmar inscrições</button>
+</footer>
+
+<header class="text-center">
+  <h1 class="display-6">INSCRIÇÕES ACEITAS</h1>
+</header>
+
+<table class="table container-xl">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th class="image">Perfil</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr *ngFor="let item of list; index as i">
+      <td *ngIf="item.checked && !item.stage">{{i+1}}</td>
+      <td *ngIf="item.checked && !item.stage">{{item.nome}}</td>
+      <td *ngIf="item.checked && !item.stage">{{item.email}}</td>
+      <td *ngIf="item.checked && !item.stage">
+        <img class="image" src="{{'data:'+ item.files[0].file.type + ';base64,' + item.files[0].file.attachment}}">
+      </td>
+    </tr>
+  </tbody>
+</table>

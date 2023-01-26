@@ -1,0 +1,43 @@
+<header class="text-center mt-3">
+  <h1 class="display-6">Criar conta</h1>
+</header>
+
+<div class="container-lg mt-2">
+    <form #form_login="ngForm" (ngSubmit)="onSubmit(form_login)">
+      
+      <div class="mb-3">
+        <label for="loginUser" class="form-label">Usuário</label>
+        <input type="user" class="form-control" name="email"  
+        id="loginUser" [ngModel]="user.email" required #name="ngModel"
+        [class.is-invalid] = "!name.valid && name.touched">
+        
+        <!-- <div [class.invalid-tooltip] = "!name.valid && !name.touched"
+        class="badge text-bg-danger"> 
+          Usuário obrigatório.
+        </div> -->
+      </div> 
+  
+      <div class="mb-3">
+        <label for="loginPassword" class="form-label">Senha</label>
+        <input type="password" class="form-control" name="senha" 
+        id="loginPassword" [ngModel]="user.senha" required #password="ngModel"
+        [class.is-invalid] = "!password.valid && password.touched">
+        
+        <!-- <div [class.invalid-tooltip] = "!password.valid && !password.touched"
+        class="badge text-bg-danger"> 
+          Senha obrigatória.
+        </div> -->
+      </div>
+  
+      <!-- <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="LoginCheck">
+        <label class="form-check-label" for="LoginCheck">Lembrar-me</label>
+      </div> -->
+      <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-primary"
+          [disabled]="!form_login.valid">Registrar</button>
+      </div>
+    </form>
+  </div>
+  
+  

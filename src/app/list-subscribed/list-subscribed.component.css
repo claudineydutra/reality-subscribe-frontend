@@ -1,0 +1,14 @@
+.image{
+    width: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr{
+    text-align: center;
+}
+
+th{
+    text-align: center;
+}

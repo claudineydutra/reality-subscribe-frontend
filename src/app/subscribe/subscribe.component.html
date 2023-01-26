@@ -1,0 +1,39 @@
+<div class="container-lg mt-5">
+  <form #form_subscribe="ngForm" (ngSubmit)="onSubmit(form_subscribe)">
+
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome Completo</label>
+      <input type="text" class="form-control" name="nome" id="nome" 
+      [ngModel]="subscriber.nome" required #nome="ngModel"
+      [class.is-invalid]="!nome.valid && nome.touched">
+
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">E-mail</label>
+      <input type="email" class="form-control" id="email" name="email" id="email"
+      [ngModel]="subscriber.email" required email #email="ngModel"
+      [class.is-invalid]="!email.valid && email.touched">   
+    </div>
+
+    <div class="mb-3">
+        <label for="photoFile" class="form-label">Anexe uma foto</label>
+        <input class="form-control" #foto type="file" (change)="onFileChange($event)" accept="image/*" required >
+        
+        <div id="warningPhoto" class="form-text">Tamanho máximo 5mb</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="videoFile" class="form-label">Anexe um vídeo</label>
+        <input class="form-control" #video type="file" (change)="onFileChange($event)" accept="video/*" required >
+
+        <div id="warningVideo" class="form-text">Tamanho máximo 5mb</div>
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-primary"
+        [disabled]="!form_subscribe.valid" >Confirmar</button>
+    </div>
+  </form>
+</div>
+
